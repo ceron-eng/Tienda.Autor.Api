@@ -7,12 +7,12 @@ namespace Tienda.Autor.Api.Models
     {
         [BsonId]
         [BsonRepresentation(BsonType.ObjectId)]
-        public string Id { get; set; }
+        public string? Id { get; set; }
 
-        public string Guid { get; set; } // Nuevo campo para almacenar el GUID
+        public string? Guid { get; set; } // Nuevo campo para almacenar el GUID
 
-        public string Name { get; set; }
+        public string? Name { get; set; }
 
-        public byte[] Data { get; set; }
+        public byte[]? Data { get; set; }
     }
 }

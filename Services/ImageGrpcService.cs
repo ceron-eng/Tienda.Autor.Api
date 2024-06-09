@@ -7,7 +7,7 @@ using Tienda.Autor.Api.Models;
 
 namespace Tienda.Autor.Api.Services
 {
-    public class ImageGrpcService : imageservice.ImageService.ImageServiceBase
+    public class ImageGrpcService : Tienda.Autor.Api.ImageService.ImageServiceBase
     {
         private readonly ILogger<ImageGrpcService> _logger;
         private readonly ImageService _imageService;

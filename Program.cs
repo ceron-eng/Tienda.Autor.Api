@@ -16,6 +16,17 @@ builder.Services.Configure<ImageDatabaseSettings>(
 builder.Services.AddSingleton<ImageDatabaseSettings>(sp =>
     sp.GetRequiredService<IOptions<ImageDatabaseSettings>>().Value);
 
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAllOrigins",
+        builder =>
+        {
+            builder.AllowAnyOrigin()
+                   .AllowAnyHeader()
+                   .AllowAnyMethod();
+        });
+});
+
 builder.Services.AddSingleton<ImageService>();
 
 var app = builder.Build();
@@ -23,5 +34,5 @@ var app = builder.Build();
 // Configure the HTTP request pipeline.
 app.MapGrpcService<ImageGrpcService>();
 app.MapGet("/", () => "Communication with gRPC endpoints must be made through a gRPC client. To learn how to create a client, visit: https://go.microsoft.com/fwlink/?linkid=2086909");
-
+app.UseCors("AllowAllOrigins");
 app.Run();
