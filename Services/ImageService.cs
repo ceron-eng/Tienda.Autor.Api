@@ -18,6 +18,12 @@ namespace Tienda.Autor.Api.Services
 
         public async Task SaveImageAsync(Image image) =>
             await _images.InsertOneAsync(image);
+
+        public async Task<Image> GetImageByGuidAsync(string guid)
+        {
+            var filter = Builders<Image>.Filter.Eq(img => img.Guid, guid);
+            return await _images.Find(filter).FirstOrDefaultAsync();
+        }
     }
 
     public class ImageDatabaseSettings
@@ -27,4 +33,3 @@ namespace Tienda.Autor.Api.Services
         public string? ImagesCollectionName { get; set; }
     }
 }
-
